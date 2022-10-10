@@ -63,8 +63,7 @@ public class CreditBB {
 
 			if(interest==0) {
 				result = sum/installment;
-			}
-			else {
+			}else {
 				double interest2 = interest/120;
 				double installment2 = installment*12;
 				double cnt = 1/Math.pow(1.0+interest2,installment2);
@@ -83,7 +82,6 @@ public class CreditBB {
 		}
 	}
 
-	// Go to "showresult" if ok
 	public String calc() {
 		if (doTheMath()) {
 			return "showresult";
@@ -91,7 +89,6 @@ public class CreditBB {
 		return null;
 	}
 
-	// Put result in messages on AJAX call
 	public String calc_AJAX() {
 		if (doTheMath()) {
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Wynik: " + result, null));
