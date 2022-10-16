@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Kalkulator kredytowy</title>
+	<style>
+    button.ui-button {
+        margin-right: .5rem;
+    }
+     .ui-analog-clock {
+        width: 200px;
+    }
+     p {
+        line-height: 1.5;
+        margin: 0;
+    }
+	</style>
+</h:head>
+<h:body>
+	<p:panel header="Kalkulator kredytowy" footer="Kacper Nowak PAW2 2022/2023">
+	 	<p:panel id="explode" header="Tik...tak..">
+	        <h:outputText value="nie klikaj... bo wybuchnę!"/>
+	        <p:effect type="explode" event="click"/>
+	        <h:form>
+	    		<p:clock displayMode="analog" style="width:200px;"/>
+	    	</h:form>
+	    </p:panel>
+	
+	    <h:form id="bla">
+		   <h:panelGrid columns="3" cellpadding="2">
+		         <p:outputLabel for="input1" value="Suma kredytu:"/>
+		         <p:inputNumber required="true" requiredMessage="Brak kwoty!" id="input1" value="#{creditBB.sum}" modifyValueOnWheel="false" />
+		         <p:messages for="input1" />
+		            
+		            
+		         <p:outputLabel for="input2" value="Liczba lat kredytu"/>
+		         <p:inputNumber required="true" requiredMessage="Brak liczby rat!" id="input2" value="#{creditBB.installment}" minValue="1" maxValue="99" decimalPlaces="0" />
+		         <p:messages for="input2" />
+		         
+		 			
+		         <p:outputLabel for="input3" value="Oprocentowanie"/>
+		         <p:inputNumber required="true" requiredMessage="Brak oprocentowania!" id="input3" value="#{creditBB.interest}" symbol="%" symbolPosition="s" emptyValue="always" minValue="0" maxValue="99" decimalPlaces="2"/>
+		         <p:messages for="input3" />
+		            
+		            
+	
+			</h:panelGrid>
+				         <p:messages id="msg" />
+		         <p:commandButton value="Oblicz" styleClass="ui-button-raised" action="#{creditBB.calc()}" update="@form"/>
+		         <p:commandButton value="Oblicz AJAX" styleClass="ui-button-raised" action="#{creditBB.calc_AJAX()}" update="msg"/>
+	    </h:form>
+	    
+	</p:panel>
+</h:body>
+</html>
