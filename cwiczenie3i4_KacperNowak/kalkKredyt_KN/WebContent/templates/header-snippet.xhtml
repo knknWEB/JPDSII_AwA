@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<div class="card">
+    <h:form>
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+        <p:fieldset legend="Laboratoria 04 i 05, PAW2 2022/23" toggleable="true" toggleSpeed="500">
+            <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs"/>
+            <p class="m-0">
+                Zrealizowano szablonowanie i konwersję z walidacją!
+            </p>
+        </p:fieldset>
+    </h:form>
+</div>
+
+</ui:composition>

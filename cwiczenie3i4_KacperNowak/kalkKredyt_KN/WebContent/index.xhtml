@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+	
+
+		<p:panel header="Kalkulator kredytowy" footer="nie uznaję reklamacji, z powodu wysokiej inflacji :-)">
+	 
+	
+	    <h:form id="bla">
+		   <h:panelGrid columns="3" cellpadding="2">
+		   
+		  		 <p:outputLabel for="input1" value="Suma kredytu:"/>
+		         <p:inputText required="true" requiredMessage="Brak kwoty!" validatorMessage="Kwota powinna być z zakresu 100.00-999999999.99" converterMessage="Niepoprawna wartość kwoty! Powinna być ona zmiennoprzecinkowa!"  id="input1" value="#{creditBB.sum}">
+		         		<f:convertNumber maxFractionDigits="2" />
+ 						<f:validateLength maximum="9" minimum="3" />
+		         </p:inputText>
+		         
+		         <p:messages for="input1" />
+		            
+		            
+		         <p:outputLabel for="input2" value="Liczba lat kredytu"/>
+		         <p:inputText required="true" requiredMessage="Brak liczby rat!" validatorMessage="Liczba lat powinna wynosić 1-36!" converterMessage="Niepoprawna wartość lat! Powinna być całkowita!"  id="input2" value="#{creditBB.installment}"  >
+		         <f:convertNumber maxFractionDigits="0" />
+ 						<f:validateDoubleRange minimum="1" maximum="36" />
+		         </p:inputText>
+		         <p:messages for="input2" />
+		         
+		 			
+		         <p:outputLabel for="input3" value="Oprocentowanie"/>
+		         <p:inputText required="true" requiredMessage="Brak oprocentowania!" validatorMessage="Oprocentowanie powinno wynosić 0-100%!" converterMessage="Niepoprawna wartość oprocentowania! Powinna być całkowita!" id="input3" value="#{creditBB.interest}" symbol="%" >
+		         <f:convertNumber maxFractionDigits="0" />
+ 						<f:validateDoubleRange minimum="0" maximum="100" />
+		         </p:inputText>
+		         <p:messages for="input3" />
+		         <!-- <p:outputLabel for="input1" value="Suma kredytu:"/>
+		         <p:inputText required="true" requiredMessage="Brak kwoty!" converterMessage="Miepoprawna wartos zmiennoprzecinkowa!" validatorMessage="Nieudana walidacja danych!" id="input1" value="#{creditBB.sum}" modifyValueOnWheel="false" />
+		         <p:messages for="input1" />
+		            
+		            
+		         <p:outputLabel for="input2" value="Liczba lat kredytu"/>
+		         <p:inputNumber required="true" requiredMessage="Brak liczby rat!" id="input2" value="#{creditBB.installment}" minValue="1" maxValue="99" decimalPlaces="0" />
+		         <p:messages for="input2" />
+		         
+		 			
+		         <p:outputLabel for="input3" value="Oprocentowanie"/>
+		         <p:inputNumber required="true" requiredMessage="Brak oprocentowania!" id="input3" value="#{creditBB.interest}" symbol="%" symbolPosition="s" emptyValue="always" minValue="0" maxValue="99" decimalPlaces="2"/>
+		         <p:messages for="input3" /> -->
+		            
+		            
+	
+			</h:panelGrid>
+				         <p:messages id="msg" />
+		         <p:commandButton value="Oblicz" styleClass="ui-button-raised" action="#{creditBB.calc()}" update="@form"/>
+	    </h:form>
+	    
+	</p:panel>
+
+	</ui:define>
+
+</ui:composition>
+</html>
+	

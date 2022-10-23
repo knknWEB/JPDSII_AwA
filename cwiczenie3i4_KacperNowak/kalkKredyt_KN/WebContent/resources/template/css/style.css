@@ -1,0 +1,30 @@
+body{
+	font-family: 'Century Gothic',helvetica,verdana,arial;
+	background: url("../img/background.jpg.jsf?ln=template") ;
+	background-size: cover;
+	margin:0;
+	
+}
+button.ui-button {
+        margin-right: .5rem;
+    }
+.ui-analog-clock {
+        width: 200px;
+    }
+p {
+        line-height: 1.5;
+        margin: 0;
+    }
+.bottom-space{
+	margin-bottom: 1em;
+}
+
+.top-space{
+	margin-top: 1em;
+}
+
+#page_wrapper{
+	margin: 1em;
+	min-width: 700px;
+}
+
