@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/main.xhtml">
+
+	<ui:define name="title">
+		Serwis STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+
+
+<div class="card">
+    <h:form>
+        <p:breadCrumb>
+            <p:menuitem outcome="panel"/>
+            <p:menuitem value="Lista wpisów"/>
+        </p:breadCrumb>
+    </h:form>
+</div>
+<h4>Lista wpisów:</h4>
+
+	<h:form id="form-table" style="margin-bottom:1em;">
+	
+			
+
+		<p:dataTable value="#{infoListBB.list}" var="i">
+
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="autor" />
+				</f:facet>
+			<h:outputText value="#{i.author}" />
+		</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="tytuł" />
+				</f:facet>
+				<h:outputText value="#{i.title}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="zdjęcie" />
+				</f:facet>
+				<h:outputText value="#{i.photo}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opis" />
+				</f:facet>
+				<h:outputText escape="false" value="#{i.description}" />
+			</p:column>
+
+			<p:column priority="4">
+				<f:facet name="header">
+					<h:outputText value="data" />
+				</f:facet>
+				<h:outputText value="#{i.date}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj"
+					action="#{infoListBB.editInfo(i)}" />
+
+				<p:commandButton value="Usuń"
+					action="#{infoListBB.deleteInfo(i)}" update="@form" />
+
+				
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

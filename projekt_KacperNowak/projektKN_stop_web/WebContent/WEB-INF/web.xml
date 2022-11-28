@@ -9,7 +9,7 @@
   </context-param>
   <context-param>
   	<param-name>primefaces.THEME</param-name>
-  	<param-value>nova-dark</param-value>
+  	<param-value>nova-light</param-value>
   </context-param>
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -24,6 +24,6 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>index.jsf</welcome-file>
+    <welcome-file>/userPage/homepage.jsf</welcome-file>
   </welcome-file-list>
 </web-app>

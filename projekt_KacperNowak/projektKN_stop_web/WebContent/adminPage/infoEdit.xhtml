@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/main.xhtml">
+
+	<ui:define name="title">
+		Serwis STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+	
+<div class="card">
+    <h:form>
+        <p:breadCrumb>
+            <p:menuitem outcome="panel"/>
+            <p:menuitem outcome="infoList" value="Lista wpisów"/>
+            <p:menuitem value="Edycja wpisu"/>
+        </p:breadCrumb>
+    </h:form>
+</div>
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{infoEditBB.info != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+  
+  
+  
+				<h:outputLabel for="n-date" value="Data wpisu:" />
+				<p:datePicker id="n-date" value="#{infoEditBB.info.date}"
+                         
+					required="true" requiredMessage="podaj datę"
+					converterMessage="niepoprawny format daty!">
+              	<f:convertDateTime pattern="dd.MM.yyyy"/>
+              
+                </p:datePicker>
+                
+                
+		<!-- 	<p:inputText id="n-date" value="#{infoEditBB.info.date}"
+					required="true" requiredMessage="podaj datę"
+					converterMessage="niepoprawny format daty (np. 15-07-2018)">
+					<f:convertDateTime pattern="dd-MM-yyyy"/>
+			    </p:inputText> -->
+				<p:message for="n-date" display="icon"/>
+				
+
+				<h:outputLabel for="n-title" value="tytuł:" />
+				<p:inputText id="n-title" value="#{infoEditBB.info.title}"
+					required="true" requiredMessage="Podaj tytuł"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="n-title" display="icon"/>
+
+				<h:outputLabel for="n-description" value="opis:" />
+				<p:textEditor secure="false" id="n-description" widgetVar="editor1" value="#{infoEditBB.info.description}" height="300"  
+				required="true" requiredMessage="podaj opis">
+				</p:textEditor>
+					
+				<p:message for="n-description" display="icon"/>
+
+				<h:outputLabel for="n-photo" value="zdjęcie:" />
+				<p:inputText id="n-photo" value="#{infoEditBB.info.photo}"
+					required="true" requiredMessage="Wprowadź nazwę pliku"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="n-photo" display="icon"/>
+				
+				<h:outputLabel for="n-author" value="autor:" />
+				<p:inputText id="n-author" value="#{infoEditBB.info.author}"
+					required="true" requiredMessage="Wprowadź autora"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="n-author" display="icon"/>
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{infoEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+
+			<p:button value="Anuluj" outcome="infoList" />
+		</h:panelGrid>
+		</h:form>
+		
+
+	</p:panel>
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

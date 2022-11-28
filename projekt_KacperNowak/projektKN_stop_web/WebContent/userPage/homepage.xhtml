@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="templates/main.xhtml">
+
+	<ui:define name="title">
+		Serwis STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+		    <section id="about" class="about">
+
+        <div class="container" data-aos="fade-up">
+            <div class="row gx-0">
+
+            <div class="col-lg-6  justify-content-center" >
+                <div class="content">
+                <h3>Kim jesteśmy?</h3>
+                <h2>Stowarzyszenie STOP DLA ODLEWNI powstało po to, aby chronić nasze zdrowie i środowisko. Nie mamy na celu zatrzymania odlewni!</h2>
+                <p>
+                    Jednym z głównych celów stowarzyszenia jest powstrzymanie emisyjności pyłów – opiłków żelaza, które zanieczyszczają nasze miasto w znaczącym stopniu.
+                    Wielu z mieszkańców Zawiercia ma problem z opiłkami, które osiadają na wszystkich powierzchniach i tworzą szorstką powłokę, której nie można zmyć w domowych warunkach. Zniszczone dachy, panele fotowoltaiczne, okna, ogrodzenia, samochody, ulice, chodniki, kosze na śmieci… tych rzeczy jest znacznie więcej!
+                </p>
+                <div class="text-center text-lg-start">
+                    <a href="/projektKN_stop_web/userPage/info.jsf" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                    <span>Czytaj aktualności</span>
+                    <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <img src="/imgages/dron/sen1.jpg" class="img-fluid" alt="" />
+            </div>
+
+            </div>
+        </div>
+    </section>
+ 
+<section id="values" class="values">
+    <div class="container" data-aos="fade-up">
+        <header class="section-header">
+          <p>„Samotni możemy zrobić niewiele; razem możemy zrobić tak wiele.”</p>
+          <h2>Helen Keller</h2>
+        </header>
+    </div>
+</section>
+
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>

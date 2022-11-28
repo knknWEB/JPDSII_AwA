@@ -1,36 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-<h:head>
-	<meta charset="utf-8"/>
-	<title>STOP dla Odlewni</title>
-</h:head>
-<h:body style="background-color: #eee; margin: 0.5em;">
-<div class="card">
-    <h:form>
-        <p:breadCrumb>
-            <p:menuitem outcome="index" value="Panel administratora"/>
-        </p:breadCrumb>
-    </h:form>
-</div>
-	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
-		style="margin-bottom: 1em;">
-		<h:form>
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="author:" />
-				
-				<p:commandButton value="Szukaj" update="form-table" />
-			</h:panelGrid>
-		</h:form>
-	</p:panel>
-
-	<p:messages />
-<div class="card">
+ <div class="card">
+ <h2>Panel administracyjny</h2>
     <h:form>
         <p:growl id="messages"/>
 
@@ -92,18 +67,4 @@
     </h:form>
 </div>
 
-	<h:form id="form-table" style="margin-bottom:1em;">
-
-		<p:commandButton value="Lista personów"
-			action="personList.jsf" style="margin-bottom:1em;"/>
-			
-			<p:commandButton value="Lista wpisów"
-			action="newList.jsf" style="margin-bottom:1em;"/>
-			
-			<p:commandButton value="Lista wpisów2"
-			action="infoList.jsf" style="margin-bottom:1em;"/>
-
-	</h:form>
-
-</h:body>
-</html>
+</ui:composition>
