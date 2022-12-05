@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="title">
+		Logowanie STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+	
+	<p>
+
+	<h2 class="mt-0">Centralny system uwierzytelniający</h2>
+    <p:panel header="Logowanie" footer="Nie pamiętasz hasła? Skontaktuj się z administratorem.">
+        <p class="m-0">
+            <h:form>
+            
+            <h:panelGrid id="grid" columns="3" cellpadding="7">
+            <p:outputLabel for="login" value="Login:"/>
+           <p:inputText id="login" value="#{loginBB.login}"
+					required="true"	requiredMessage="Podaj login!" update="login"/>
+            <p:message for="login"/>
+
+            <p:outputLabel for="pass" value="Hasło:"/>
+            <p:password id="pass" value="#{loginBB.pass}" toggleMask="true" redisplay="true" required="true"	requiredMessage="podaj hasło"/>
+            <p:message for="pass"/>
+
+         
+            </h:panelGrid>
+		
+			<p:messages id="msg" />
+           
+        	
+			
+			<p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" />
+
+		</h:form>
+        </p>
+    </p:panel>
+
+
+
+	</p>
+
+	</ui:define>
+
+
+</ui:composition>
+
+</html>

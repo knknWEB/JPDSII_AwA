@@ -11,7 +11,7 @@
 
         <p:menubar>
             <p:submenu label="Wpis" icon="pi pi-fw pi-file" >
-                <p:menuitem value="Lista wpisów" outcome="/adminPage/infoList" icon="pi pi-fw pi-align-left"/>
+                <p:menuitem value="Lista wpisów" outcome="/pages/admin/infoList" icon="pi pi-fw pi-align-left"/>
                 <p:submenu label="Nowy" icon="pi pi-fw pi-plus">
                     <p:menuitem value="Dodaj wpis" action="#{infoListBB.newInfo()}" icon="pi pi-fw pi-bookmark"/>
                 </p:submenu>
@@ -53,15 +53,16 @@
 
             <p:divider layout="vertical"/>
 
-            <p:menuitem value="Quit" icon="pi pi-fw pi-power-off"/>
+            <p:menuitem value="Wyloguj" icon="pi pi-fw pi-power-off" action="#{loginBB.doLogout()}" />
 
             <f:facet name="options">
                 <div class="ui-input-icon-left mr-2">
                     <i class="pi pi-fw pi-search" />
                     <p:inputText placeholder="Search"/>
                 </div>
-                <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
-                <p:button value="Strona głóna" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" outcome="/userPage/homepage.jsf"/>
+      
+                 
+                <p:button value="Strona głóna" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" outcome="/public/homepage.jsf" />
             </f:facet>
         </p:menubar>
     </h:form>

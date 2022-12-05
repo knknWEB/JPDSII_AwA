@@ -6,7 +6,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<ui:composition template="templates/main.xhtml">
+<ui:composition template="/templates/main.xhtml">
 
 	<ui:define name="title">
 		Serwis STOP dla odlewni
@@ -16,6 +16,7 @@
 
 		<ui:insert name="pageContent">
 		    <section id="about" class="about">
+			<p:messages id="msg" />
 
         <div class="container" data-aos="fade-up">
             <div class="row gx-0">
@@ -29,7 +30,7 @@
                     Wielu z mieszkańców Zawiercia ma problem z opiłkami, które osiadają na wszystkich powierzchniach i tworzą szorstką powłokę, której nie można zmyć w domowych warunkach. Zniszczone dachy, panele fotowoltaiczne, okna, ogrodzenia, samochody, ulice, chodniki, kosze na śmieci… tych rzeczy jest znacznie więcej!
                 </p>
                 <div class="text-center text-lg-start">
-                    <a href="/projektKN_stop_web/userPage/info.jsf" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                    <a href="/projektKN_stop_web/public/info.jsf" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
                     <span>Czytaj aktualności</span>
                     <i class="bi bi-arrow-right"></i>
                     </a>
