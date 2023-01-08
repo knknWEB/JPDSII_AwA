@@ -28,6 +28,7 @@
 /javax.faces.resource : PUBLIC;
 /public : PUBLIC;
 /pages/admin : admin;
+/pages/user: user;
 			</param-value>
 		</init-param>
 		<init-param>
@@ -68,6 +69,6 @@
 	</welcome-file-list>
 	<error-page>
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/pages/viewExpired.xhtml</location>
+		<location>/public/viewExpired.xhtml</location>
 	</error-page>
 </web-app> 	

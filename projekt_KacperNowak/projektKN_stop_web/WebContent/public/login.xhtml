@@ -14,22 +14,30 @@
 
 	<ui:define name="content">
 	
-	<p>
 
-	<h2 class="mt-0">Centralny system uwierzytelniający</h2>
-    <p:panel header="Logowanie" footer="Nie pamiętasz hasła? Skontaktuj się z administratorem.">
-        <p class="m-0">
+<div class="card">
+    	<h2 class="mt-0">Centralny system uwierzytelniający</h2>
+
+    <p:divider />
+    
+
+    <p:card style="width: 25rem; margin-bottom: 2em; float: left;">
+	    <f:facet name="title">
+	        Zaloguj się!
+	    </f:facet>
+
+   	
             <h:form>
             
             <h:panelGrid id="grid" columns="3" cellpadding="7">
             <p:outputLabel for="login" value="Login:"/>
-           <p:inputText id="login" value="#{loginBB.login}"
+           	<p:inputText id="login" value="#{loginBB.login}"
 					required="true"	requiredMessage="Podaj login!" update="login"/>
-            <p:message for="login"/>
+            <p:message for="login" display="icon"/>
 
             <p:outputLabel for="pass" value="Hasło:"/>
-            <p:password id="pass" value="#{loginBB.pass}" toggleMask="true" redisplay="true" required="true"	requiredMessage="podaj hasło"/>
-            <p:message for="pass"/>
+            <p:password id="pass" value="#{loginBB.pass}" toggleMask="true" redisplay="true" required="true"	requiredMessage="Podaj hasło!"/>
+            <p:message for="pass" display="icon"/>
 
          
             </h:panelGrid>
@@ -38,16 +46,29 @@
            
         	
 			
-			<p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="msg" />
+			<p:commandButton value="Zaloguj" action="#{loginBB.doLogin()}" update="@form" />
 
 		</h:form>
-        </p>
-    </p:panel>
+   
+	</p:card>
 
+    <p:divider />
 
+    <p:card style="width: 25rem; margin-bottom: 2em; float: left;">
+	    <f:facet name="title">
+	        Nie masz konta?
+	    </f:facet>
+				<p:button value="Rejestracja" outcome="/public/register"/>
 
-	</p>
+   
+	</p:card>    
+    <p:divider />
 
+  
+</div>	
+	
+
+	
 	</ui:define>
 
 

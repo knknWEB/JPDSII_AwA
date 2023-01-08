@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="title">
+		Serwis STOP dla odlewni
+	</ui:define>
+
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+		 <section id="values" class="values">
+    		<div class="container" data-aos="fade-up">
+        		<header class="section-header">
+          			<p>Witaj #{remoteClient.details.name}, zwany #{remoteClient.details.login}!</p>
+        		</header>
+    		</div>
+		</section>
+		
+		
+			<p:messages id="msg" />
+
+<div class="card" style=" margin:1em;">
+	<p>W tym miejscu możesz zarządzać swoich kontem. To twój panel uzytkownika, członka stowarzyszenia! Z tego miejsca możesz edytować swój profil, zobaczyć listę swoich zamówień.</p>
+</div>
+
+<h2>Dane użytkownika:</h2>	
+ <h:form id="form-table" style="margin-bottom:1em;">
+	
+
+		<p:dataTable id="users" value="#{userListBB.logged}" var="u">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Imię" />
+				</f:facet>
+				<h:outputText value="#{u.name}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Nazwisko" />
+				</f:facet>
+				<h:outputText value="#{u.surname}" />
+			</p:column>	
+			<p:column>
+			<f:facet name="header">
+					<h:outputText value="Miasto" />
+				</f:facet>
+				<h:outputText value="#{u.city}" />
+			</p:column>
+			<p:column>
+			<f:facet name="header">
+					<h:outputText value="Kod pocztowy" />
+				</f:facet>
+				<h:outputText value="#{u.postcode}" />
+			</p:column>
+			<p:column>
+			<f:facet name="header">
+					<h:outputText value="Ulica" />
+				</f:facet>
+				<h:outputText value="#{u.street}" />
+			</p:column>
+			<p:column>
+			<f:facet name="header">
+					<h:outputText value="Numer" />
+				</f:facet>
+				<h:outputText value="#{u.nofHouse}/#{u.nofFlat}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj profil"
+					action="#{userListBB.editUser(u)}" />
+
+				
+
+				
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+	
+<h2>Zamówienia użytkownika:</h2>	
+
+ <h:form id="form-table-order" style="margin-bottom:1em;">
+	
+
+		<p:dataTable id="orders" value="#{shopListBB.list}" var="s">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Numer zamówienia" />
+				</f:facet>
+				<h:outputText value="#{s.shopId}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Data zamówienia" />
+				</f:facet>
+				<h:outputText value="#{s.shopDate}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Zamówiony produkt" />
+				</f:facet>
+				<h:outputText value="#{s.product.productName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cena" />
+				</f:facet>
+				<h:outputText value="#{s.price}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Status zamówienia" />
+				</f:facet>
+				<h:outputText value="#{s.shopStatus}" />
+			</p:column>
+			
+
+		</p:dataTable>
+	</h:form>
+
+<section id="values" class="values">
+    <div class="container" data-aos="fade-up">
+        <header class="section-header">
+          <p>„Samotni możemy zrobić niewiele; razem możemy zrobić tak wiele.”</p>
+          <h2>Helen Keller</h2>
+        </header>
+    </div>
+</section>
+
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>

@@ -26,9 +26,9 @@ public class Product implements Serializable {
 
 	private String type;
 
-	//bi-directional many-to-one association to Order
+	//bi-directional many-to-one association to Shop
 	@OneToMany(mappedBy="product")
-	private List<Order> orders;
+	private List<Shop> shops;
 
 	public Product() {
 	}
@@ -73,26 +73,26 @@ public class Product implements Serializable {
 		this.type = type;
 	}
 
-	public List<Order> getOrders() {
-		return this.orders;
+	public List<Shop> getShops() {
+		return this.shops;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setShops(List<Shop> shops) {
+		this.shops = shops;
 	}
 
-	public Order addOrder(Order order) {
-		getOrders().add(order);
-		order.setProduct(this);
+	public Shop addShop(Shop shop) {
+		getShops().add(shop);
+		shop.setProduct(this);
 
-		return order;
+		return shop;
 	}
 
-	public Order removeOrder(Order order) {
-		getOrders().remove(order);
-		order.setProduct(null);
+	public Shop removeShop(Shop shop) {
+		getShops().remove(shop);
+		shop.setProduct(null);
 
-		return order;
+		return shop;
 	}
 
 }

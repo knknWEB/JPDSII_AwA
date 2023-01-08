@@ -19,29 +19,31 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userId;
 
+	private String city;
+
 	private String login;
 
 	private String mail;
 
 	private String name;
 
+	private int nofFlat;
+
+	private int nofHouse;
+
 	private String password;
+
+	private String postcode;
 
 	private String role;
 
+	private String street;
+
 	private String surname;
 
-	//bi-directional many-to-one association to Address
+	//bi-directional many-to-one association to Shop
 	@OneToMany(mappedBy="user")
-	private List<Address> addresses;
-
-	//bi-directional many-to-one association to Order
-	@OneToMany(mappedBy="user")
-	private List<Order> orders;
-
-	//bi-directional many-to-one association to Participant
-	@OneToMany(mappedBy="user")
-	private List<Participant> participants;
+	private List<Shop> shops;
 
 	public User() {
 	}
@@ -52,6 +54,14 @@ public class User implements Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getLogin() {
@@ -78,12 +88,36 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
+	public int getNofFlat() {
+		return this.nofFlat;
+	}
+
+	public void setNofFlat(int nofFlat) {
+		this.nofFlat = nofFlat;
+	}
+
+	public int getNofHouse() {
+		return this.nofHouse;
+	}
+
+	public void setNofHouse(int nofHouse) {
+		this.nofHouse = nofHouse;
+	}
+
 	public String getPassword() {
 		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPostcode() {
+		return this.postcode;
+	}
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
 	}
 
 	public String getRole() {
@@ -94,6 +128,14 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
+	public String getStreet() {
+		return this.street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
 	public String getSurname() {
 		return this.surname;
 	}
@@ -102,70 +144,26 @@ public class User implements Serializable {
 		this.surname = surname;
 	}
 
-	public List<Address> getAddresses() {
-		return this.addresses;
+	public List<Shop> getShops() {
+		return this.shops;
 	}
 
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
+	public void setShops(List<Shop> shops) {
+		this.shops = shops;
 	}
 
-	public Address addAddress(Address address) {
-		getAddresses().add(address);
-		address.setUser(this);
+	public Shop addShop(Shop shop) {
+		getShops().add(shop);
+		shop.setUser(this);
 
-		return address;
+		return shop;
 	}
 
-	public Address removeAddress(Address address) {
-		getAddresses().remove(address);
-		address.setUser(null);
+	public Shop removeShop(Shop shop) {
+		getShops().remove(shop);
+		shop.setUser(null);
 
-		return address;
-	}
-
-	public List<Order> getOrders() {
-		return this.orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	public Order addOrder(Order order) {
-		getOrders().add(order);
-		order.setUser(this);
-
-		return order;
-	}
-
-	public Order removeOrder(Order order) {
-		getOrders().remove(order);
-		order.setUser(null);
-
-		return order;
-	}
-
-	public List<Participant> getParticipants() {
-		return this.participants;
-	}
-
-	public void setParticipants(List<Participant> participants) {
-		this.participants = participants;
-	}
-
-	public Participant addParticipant(Participant participant) {
-		getParticipants().add(participant);
-		participant.setUser(this);
-
-		return participant;
-	}
-
-	public Participant removeParticipant(Participant participant) {
-		getParticipants().remove(participant);
-		participant.setUser(null);
-
-		return participant;
+		return shop;
 	}
 
 }

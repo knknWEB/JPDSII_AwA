@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{shopEditBB.onLoad()}" />
+</f:metadata>
+
+<ui:composition template="templates/main.xhtml">
+
+
+
+	<ui:define name="title">
+		Edycja użytkownika - Serwis STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+	
+<div class="card">
+    <h:form>
+        <p:breadCrumb>
+            <p:menuitem outcome="panel"/>
+            <p:menuitem outcome="orderList" value="Lista zamówień"/>
+            <p:menuitem value="Edycja zamówienia"/>
+        </p:breadCrumb>
+    </h:form>
+</div>
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{shopEditBB.shop != null}">
+		<h2>Zamówienie nr #{shopEditBB.shop.shopId}</h2>
+		<dl>
+		  <dt>Użytkownik</dt>
+		  <dd>- #{shopEditBB.shop.user.login}</dd>
+		  <dd>- #{shopEditBB.shop.user.name} #{shopEditBB.shop.user.surname}</dd>
+		  <dt>Produkt</dt>
+		  <dd>- #{shopEditBB.shop.product.productName}</dd>
+		</dl>
+
+			<h:panelGrid columns="3" cellpadding="5">
+			<h:outputLabel for="u-price" value="Data:" />
+				<p:datePicker id="n-date" value="#{shopEditBB.shop.shopDate}"   
+					required="true" requiredMessage="podaj datę"
+					converterMessage="niepoprawny format daty!">
+              	<f:convertDateTime pattern="dd.MM.yyyy"/>
+                </p:datePicker>
+				<p:message for="n-date" display="icon"/>
+				
+				<h:outputLabel for="u-price" value="Kwota:" />
+				<p:inputText id="u-price" value="#{shopEditBB.shop.price}"
+					required="true" requiredMessage="Podaj kwotę"
+					validatorMessage="co najwyżej 6 znakow">
+					<f:validateLength maximum="6" />
+				</p:inputText>
+				<p:message for="u-price" display="icon"/>
+					
+				<h:outputLabel for="u-statuse" value="status"/>
+			        <p:selectOneButton id="u-statuse" value="#{shopEditBB.shop.shopStatus}" required="true" requiredMessage="Podaj status">
+			            <f:selectItem itemLabel="Nowe" itemValue="Nowe"/>
+			            <f:selectItem itemLabel="Realizacja" itemValue="Realizacja"/>
+			            <f:selectItem itemLabel="Zrealizowane" itemValue="Zrealizowane"/>
+			            <f:selectItem itemLabel="Anulowane" itemValue="Anulowane"/>
+			         </p:selectOneButton>
+				<p:message for="u-statuse" display="icon"/>
+			
+			<p:commandButton value="Zapisz" action="#{shopEditBB.saveData()}" style="margin-right: 1em;" update="msg" />
+
+			<p:button value="Anuluj" outcome="orderList" />
+			<p:messages id="msg"/>
+			
+		</h:panelGrid>
+		</h:form>
+		
+
+	</p:panel>
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

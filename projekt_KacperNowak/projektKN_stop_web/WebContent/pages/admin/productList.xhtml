@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/main.xhtml">
+
+	<ui:define name="title">
+		Użytkownicy STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+
+
+		<div class="card">
+		    <h:form>
+		        <p:breadCrumb>
+		            <p:menuitem outcome="panel"/>
+		            <p:menuitem value="Lista produktów:"/>
+		        </p:breadCrumb>
+		    </h:form>
+		</div>
+		<h4>Lista produktów:</h4>
+			<h:form>
+			    <div class="card">
+			        <p:dataTable var="p" value="#{productListBB.fullList}">
+			        	<p:column field="productId" headerText="id" filterable="false"/>
+			            <p:column field="productName" headerText="Nazwa" />
+			            <p:column field="quantityInPackage" headerText="Ilość w paczce" filterable="false"/>
+			            <p:column field="type" headerText="Typ" filterable="false"/>
+			            <p:column field="price" headerText="Kwota" />
+			            <p:column headerText="Opcje" >
+			            	<p:commandButton value="Edytuj" action="#{productListBB.editProduct(p)}" icon="pi pi-fw pi-pencil"/>
+			            </p:column>
+         
+			        </p:dataTable>
+			    </div>
+			</h:form>
+
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

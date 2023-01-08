@@ -31,8 +31,18 @@
 	
 			
 
-		<p:dataTable value="#{infoListBB.list}" var="i">
-
+		<p:dataTable value="#{infoListBB.fullList}" var="i" rows="10" paginator="true"
+                    rowsPerPageTemplate="1,10"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    listIcon="pi pi-bars">>
+			<p:column priority="4">
+				<f:facet name="header">
+					<h:outputText value="data" />
+				</f:facet>
+				<h:outputText value="#{i.date}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
 			<p:column priority="5">
 				<f:facet name="header">
 					<h:outputText value="autor" />
@@ -50,22 +60,13 @@
 				<f:facet name="header">
 					<h:outputText value="zdjęcie" />
 				</f:facet>
-				<h:outputText value="#{i.photo}" />
+				<img src="/projektKN_stop_web/public/resources/images/#{i.photo}" width="200em" alt="#{i.photo}"/>
 			</p:column>
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="opis" />
 				</f:facet>
 				<h:outputText escape="false" value="#{i.description}" />
-			</p:column>
-
-			<p:column priority="4">
-				<f:facet name="header">
-					<h:outputText value="data" />
-				</f:facet>
-				<h:outputText value="#{i.date}">
-					<f:convertDateTime pattern="dd-MM-yyyy" />
-				</h:outputText>
 			</p:column>
 
 			<p:column>
@@ -76,12 +77,18 @@
 				<p:commandButton value="Edytuj"
 					action="#{infoListBB.editInfo(i)}" />
 
-				<p:commandButton value="Usuń"
-					action="#{infoListBB.deleteInfo(i)}" update="@form" />
+				<p:commandButton value="Usuń" action="#{infoListBB.deleteInfo(i)}" update="@form msg" styleClass="ui-button-danger" icon="pi pi-times" style="margin:1em;">
+           			 <p:confirm header="Potwierdzenie" message="Czy na pewno chcesz usunąć wpis: #{i.title} ?" icon="pi pi-info-circle"/>
+        		</p:commandButton>
 
-				
+		        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+		            <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+		            <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" />
+		        </p:confirmDialog>
+        
 			</p:column>
-
+				<p:messages id="msg"/>
+		
 		</p:dataTable>
 	</h:form>
 

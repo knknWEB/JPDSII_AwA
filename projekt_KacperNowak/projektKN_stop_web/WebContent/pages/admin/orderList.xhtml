@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/main.xhtml">
+
+	<ui:define name="title">
+		Użytkownicy STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+
+
+		<div class="card">
+		    <h:form>
+		        <p:breadCrumb>
+		            <p:menuitem outcome="panel"/>
+		            <p:menuitem value="Lista zamówień"/>
+		        </p:breadCrumb>
+		    </h:form>
+		</div>
+		<h4>Lista zamówień:</h4>
+			<h:form>
+			    <div class="card">
+			        <p:dataTable var="s" value="#{shopListBB.fullList}">
+			            <p:column field="shopId" headerText="Numer zamówienia" />
+			            <p:column field="shopDate" headerText="Data" />
+			            <p:column field="user.login" headerText="Login" />
+			            <p:column field="product.productName" headerText="Produkt" />
+			            <p:column field="price" headerText="Cena" />
+			            <p:column field="shopStatus" headerText="Status zamówienia" />
+			            <p:column headerText="Opcje" >
+			            	<p:commandButton value="Edytuj" action="#{shopListBB.editShop(s)}" icon="pi pi-fw pi-pencil"/>
+			            	<p:commandButton value="Usuń" action="#{shopListBB.deleteShop(s)}" update="@form" styleClass="ui-button-danger" icon="pi pi-times" style="margin:1em;">
+			           			 <p:confirm header="Potwierdzenie" message="Czy na pewno chcesz usunąć zamówienie: numer #{s.shopId} ?" icon="pi pi-info-circle"/>
+			        		</p:commandButton>
+			
+					        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+					            <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+					            <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" />
+					        </p:confirmDialog>
+			            </p:column>
+         
+			        </p:dataTable>
+			    </div>
+			</h:form>
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

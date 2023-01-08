@@ -2,7 +2,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	
+	>
 
  <div class="container" data-aos="fade-up">
         <header class="section-header">
@@ -27,20 +30,36 @@
             	<a class="nav-link scrollto" href="/projektKN_stop_web/public/info.jsf">Aktualności</a>
            </p:menuitem>
             <p:menuitem>
-            	<a href="{$conf->action_root}shop"><span>Sklep</span></a>
+            	<a href="/projektKN_stop_web/public/shop.jsf"><span>Sklep</span></a>
 		   </p:menuitem>
+		   
+		   	<c:if test="#{remoteClient.details.login == null}">
+	            <p:menuitem>
+	            	<p:button styleClass="rounded-button" value="Zaloguj" outcome="login" icon="pi pi-fw pi-power-off"/>
+	            </p:menuitem>
+			</c:if>
+           
+           			  
+		  <c:if test='#{remoteClient.details.role=="user"}'>
             <p:menuitem>
-				<a href="/projektKN_stop_web/public/login.jsf" class="getstarted">Zaloguj</a>           
+            	<p:button styleClass="rounded-button ui-button-primary" value="Panel użytkownika" href="/projektKN_stop_web/pages/user/panel.jsf"  icon="pi pi-fw pi-user"/>
 			</p:menuitem>
-           <p:menuitem>
-		        <a href="{$conf->action_root}logout" class="getstarted">Wyloguj</a>
-           </p:menuitem>
-            <p:menuitem>
-				<a href="{$conf->action_root}panel" class="getstarted">Panel</a>
-			</p:menuitem>
+			</c:if>
+			
+			<c:if test='#{remoteClient.details.role=="admin"}'>
+			
 			<p:menuitem>
-				<a href="/projektKN_stop_web/pages/admin/panel.jsf" class="getstarted">Panel administratora</a>
-			</p:menuitem>
+	           <p:button styleClass="rounded-button ui-button-primary" value="Panel administratora" href="/projektKN_stop_web/pages/admin/panel.jsf"  icon="pi pi-fw pi-shield"/>          
+	            			</p:menuitem>
+	            
+			</c:if>
+			
+			<c:if test="#{remoteClient.details.login != null}">
+	            <p:menuitem>
+	            	 <p:commandButton styleClass="rounded-button ui-button-danger" value="Wyloguj" action="#{loginBB.doLogout()}" icon="pi pi-fw pi-power-off"/>          
+	            </p:menuitem>
+			</c:if>
+			
            
         </p:breadCrumb>
    	</nav><!-- .navbar -->   

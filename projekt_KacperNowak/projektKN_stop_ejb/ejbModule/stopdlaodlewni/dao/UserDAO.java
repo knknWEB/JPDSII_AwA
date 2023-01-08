@@ -15,7 +15,7 @@ import stopdlaodlewni.entities.User;
 @Stateless
 public class UserDAO {
 	// simulate finding user in DB
-	@PersistenceContext//(unitName = UNIT_NAME)
+	@PersistenceContext
 
 	protected EntityManager em;
 
@@ -34,11 +34,31 @@ public class UserDAO {
 	public User find(Object id) {
 		return em.find(User.class, id);
 	}
-
-	public List<User> getFullList() {
+	
+	
+	
+	public List<User> getList(String Login) {
 		List<User> list = null;
+		
+		String select = "select u ";
+		String from = "from User u ";
+		String where = "";
+		String orderby = "order by u.login asc";
+		
+		if (Login != null) {
+			if (where.isEmpty()) {
+				where = "where ";
+			} else {
+				where += "and ";
+			}
+			where += "u.login like :Login ";
+		}
+		
+		Query query = em.createQuery(select + from + where + orderby);
 
-		Query query = em.createQuery("select p from User p");
+		if (Login != null) {
+			query.setParameter("Login", Login+"%");
+		}
 
 		try {
 			list = query.getResultList();
@@ -48,6 +68,22 @@ public class UserDAO {
 
 		return list;
 	}
+
+	public List<User> getFullList() {
+		List<User> list = null;
+
+		Query query = em.createQuery("select u from User u");
+
+		try {
+			list = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	
 
 	public User getUserFromDatabase(String login, String pass) {
 		User u = null;
@@ -60,8 +96,13 @@ public class UserDAO {
 
 			if (login.equals(user.getLogin()) && pass.equals(user.getPassword())) {
 				u = new User();
+				u.setUserId(user.getUserId());
 				u.setLogin(login);
 				u.setPassword(pass);
+				u.setRole(user.getRole());
+				u.setName(user.getName());
+				u.setSurname(user.getSurname());
+				u.setMail(user.getMail());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,23 +110,37 @@ public class UserDAO {
 
 		return u;
 	}
+	
 
 	// simulate retrieving roles of a User from DB
 	public List<String> getUserRolesFromDatabase(User user) {
-	
-		
-		
+
 		ArrayList<String> roles = new ArrayList<String>();
 
-		if (user.getLogin().equals("user1")) {
-			roles.add("user");
-		}
-		if (user.getLogin().equals("user2")) {
-			roles.add("manager");
-		}
-		if (user.getLogin().equals("admin")) {
-			roles.add("admin");
-		}
+		 if (user.getRole().equals("user")) { 
+			 roles.add("user"); 
+			 }
+		 else if(user.getRole().equals("admin")) { 
+			 roles.add("admin");
+		  }	
 		return roles;
 	}
+	
+	public User getUserByLogin(String login) {
+		User user = null;
+
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.login = :login");
+		query.setParameter("login", login);
+
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
+		return user;
+	}
+	
+	
+	
 }

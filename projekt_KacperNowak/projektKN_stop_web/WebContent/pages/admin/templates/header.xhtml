@@ -14,54 +14,34 @@
                 <p:menuitem value="Lista wpisów" outcome="/pages/admin/infoList" icon="pi pi-fw pi-align-left"/>
                 <p:submenu label="Nowy" icon="pi pi-fw pi-plus">
                     <p:menuitem value="Dodaj wpis" action="#{infoListBB.newInfo()}" icon="pi pi-fw pi-bookmark"/>
-                </p:submenu>
-                <p:menuitem value="Usuń ostatni" icon="pi pi-fw pi-trash" action="#{infoListBB.deleteLast()}" update="@form"/>
-                
-    
-                
-                <p:divider />
-                <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
-            </p:submenu>
-
-            <p:submenu label="Edit" icon="pi pi-fw pi-pencil">
-                <p:menuitem value="Left" icon="pi pi-fw pi-align-left"/>
-                <p:menuitem value="Right" icon="pi pi-fw pi-align-right"/>
-                <p:menuitem value="Center" icon="pi pi-fw pi-align-center"/>
-                <p:menuitem value="Justify" icon="pi pi-fw pi-align-justify"/>
-            </p:submenu>
-
-            <p:submenu label="Users" icon="pi pi-fw pi-user">
-                <p:menuitem value="New" icon="pi pi-fw pi-user-plus"/>
-                <p:menuitem value="Delete" icon="pi pi-fw pi-user-minus"/>
-                <p:submenu label="Search" icon="pi pi-fw pi-users">
-                    <p:submenu label="Filter" icon="pi pi-fw pi-filter">
-                        <p:menuitem value="Print" icon="pi pi-fw pi-print"/>
-                    </p:submenu>
-                    <p:menuitem value="List" icon="pi pi-fw pi-bars"/>
+                 </p:submenu>   
+            </p:submenu>  
+            <p:submenu label="Użytkownicy" icon="pi pi-fw pi-user">
+                <p:menuitem value="Lista użytkowników" outcome="/pages/admin/userList" icon="pi pi-fw pi-align-left"/>
+                <p:submenu label="Nowy" icon="pi pi-fw pi-plus">
+                    <p:menuitem value="Dodaj użytkownika" action="#{userListBB.newUser()}" icon="pi pi-fw pi-bookmark"/>
                 </p:submenu>
             </p:submenu>
-
-            <p:submenu label="Events" icon="pi pi-fw pi-calendar">
-                <p:submenu label="Edit" icon="pi pi-fw pi-pencil">
-                    <p:menuitem value="Save" icon="pi pi-fw pi-calendar-plus"/>
-                    <p:menuitem value="Delete" icon="pi pi-fw pi-calendar-minus"/>
-                </p:submenu>
-                <p:submenu label="Archieve" icon="pi pi-fw pi-calendar-times">
-                    <p:menuitem value="Remove" icon="pi pi-fw pi-calendar-minus"/>
+            
+            <p:submenu label="Zamówienia" icon="pi pi-fw pi-calendar">
+                <p:menuitem value="Lista zamówień" icon="pi pi-fw pi-calendar-plus" outcome="/pages/admin/orderList"/>
+            </p:submenu>
+            
+            <p:submenu label="Produkt" icon="pi pi-fw pi-user">
+                <p:menuitem value="Lista produktów" outcome="/pages/admin/productList" icon="pi pi-fw pi-align-left"/>
+                <p:submenu label="Nowy" icon="pi pi-fw pi-plus">
+                    <p:menuitem value="Dodaj produkt" action="#{productListBB.newProduct()}" icon="pi pi-fw pi-bookmark"/>
                 </p:submenu>
             </p:submenu>
 
             <p:divider layout="vertical"/>
-
-            <p:menuitem value="Wyloguj" icon="pi pi-fw pi-power-off" action="#{loginBB.doLogout()}" />
+     
+			<p:menuitem>
+			<p:commandButton styleClass="rounded-button ui-button-danger" value="Wyloguj" action="#{loginBB.doLogout()}" icon="pi pi-fw pi-power-off" /> 	
+			</p:menuitem>
 
             <f:facet name="options">
-                <div class="ui-input-icon-left mr-2">
-                    <i class="pi pi-fw pi-search" />
-                    <p:inputText placeholder="Search"/>
-                </div>
-      
-                 
+              
                 <p:button value="Strona głóna" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" outcome="/public/homepage.jsf" />
             </f:facet>
         </p:menubar>

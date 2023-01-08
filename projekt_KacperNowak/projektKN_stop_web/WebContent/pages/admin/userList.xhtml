@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/main.xhtml">
+
+	<ui:define name="title">
+		Użytkownicy STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+
+
+		<div class="card">
+		    <h:form>
+		        <p:breadCrumb>
+		            <p:menuitem outcome="panel"/>
+		            <p:menuitem value="Lista użytkowników:"/>
+		        </p:breadCrumb>
+		    </h:form>
+		</div>
+		<h4>Lista użytkowników:</h4>
+			<h:form>
+			    <div class="card">
+			        <p:dataTable var="u" value="#{userListBB.fullList}">
+			        	<p:column field="userId" headerText="id" />
+			            <p:column field="name" headerText="Imię" />
+			            <p:column field="surname" headerText="Nazwisko" />
+			            <p:column field="login" headerText="Login" />
+			            <p:column field="role" headerText="Rola" />
+			            <p:column headerText="Opcje" >
+			            	<p:commandButton value="Edytuj" action="#{userListBB.editUser(u)}" icon="pi pi-fw pi-pencil"/>
+			            	<p:commandButton value="Usuń" action="#{userListBB.deleteUser(u)}" update="@form" styleClass="ui-button-danger" icon="pi pi-fw pi-trash" style="margin:1em;">
+			           			 <p:confirm header="Potwierdzenie" message="Czy na pewno chcesz usunąć użytkownika: #{u.login} ?" icon="pi pi-fw pi-trash"/>
+			        		</p:commandButton>
+			
+					        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+					            <p:commandButton value="Nie" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+					            <p:commandButton value="Tak" type="button" styleClass="ui-confirmdialog-yes" />
+					        </p:confirmDialog>
+			            </p:column>
+         
+			        </p:dataTable>
+			    </div>
+			</h:form>
+
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

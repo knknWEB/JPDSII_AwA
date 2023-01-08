@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{userEditBB.onLoad()}" />
+</f:metadata>
+
+<ui:composition template="templates/main.xhtml">
+
+
+
+	<ui:define name="title">
+		Edycja użytkownika - Serwis STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+	
+<div class="card">
+    <h:form>
+        <p:breadCrumb>
+            <p:menuitem outcome="panel"/>
+            <p:menuitem outcome="userList" value="Lista użytkowników"/>
+            <p:menuitem value="Edycja użytkownika"/>
+        </p:breadCrumb>
+    </h:form>
+</div>
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{userEditBB.user != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+			
+			<h:outputLabel for="u-name" value="imie:" />
+				<p:inputText id="u-name" value="#{userEditBB.user.name}"
+					required="true" requiredMessage="Podaj imie"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-name" display="icon"/>
+				
+				<h:outputLabel for="u-surname" value="nazwisko:" />
+				<p:inputText id="u-surname" value="#{userEditBB.user.surname}"
+					required="true" requiredMessage="Podaj nazwisko"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-surname" display="icon"/>
+  
+				<h:outputLabel for="u-login" value="login:" />
+				<p:inputText id="u-login" value="#{userEditBB.user.login}"
+					required="true" requiredMessage="Podaj login"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-login" display="icon"/>
+
+				<h:outputLabel for="u-password" value="hasło:" />
+				<p:password id="u-password" value="#{userEditBB.user.password}" toggleMask="true" redisplay="true" required="true" requiredMessage="Podaj hasło"
+					validatorMessage="co najwyżej 40 znaków"/>
+				<p:message for="u-password" display="icon"/>
+				
+				<h:outputLabel for="u-mail" value="mail:" />
+				<p:inputText id="u-mail" value="#{userEditBB.user.mail}"
+					required="true" requiredMessage="Podaj mail"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-mail" display="icon"/>
+				
+				
+				<h:outputLabel for="u-role" value="rola:" />
+				<p:inputText id="u-role" value="#{userEditBB.user.role}"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-role" display="icon"/>
+				
+				
+				
+				<h:outputLabel for="u-city" value="miasto:" />
+				<p:inputText id="u-city" value="#{userEditBB.user.city}"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-city" display="icon"/>
+				
+				<h:outputLabel for="u-post" value="kod pocztowy:" />
+				<p:inputText id="u-post" value="#{userEditBB.user.postcode}"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-post" display="icon"/>
+				
+				<h:outputLabel for="u-street" value="ulica:" />
+				<p:inputText id="u-street" value="#{userEditBB.user.street}"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-street" display="icon"/>
+				
+				<h:outputLabel for="u-nofHouse" value="numer domu:" />
+				<p:inputText id="u-nofHouse" value="#{userEditBB.user.nofHouse}"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-nofHouse" display="icon"/>
+				
+				<h:outputLabel for="u-nofFlat" value="numer mieszkania:" />
+				<p:inputText id="u-nofFlat" value="#{userEditBB.user.nofFlat}"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-nofFlat" display="icon"/>
+				
+	
+
+				
+
+			<p:commandButton value="Zapisz" action="#{userEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+			<p:button value="Anuluj" outcome="userList" />
+		</h:panelGrid>
+		</h:form>
+		
+
+	</p:panel>
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

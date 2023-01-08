@@ -23,44 +23,19 @@
     </div>
 </section>
 
-   
    <div class="card">
     <h:form id="form">
-        <p:dataView var="i" value="#{infoListBB.list}" rows="1" paginator="true"
+        <p:dataView var="i" value="#{infoListBB.fullList}" rows="1" paginator="true"
                     rowsPerPageTemplate="1,2,3"
                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    gridIcon="pi pi-th-large" listIcon="pi pi-bars">
-
-            <p:dataViewGridItem>
-                <div class="card flex justify-content-center">
-                    <h:panelGrid columns="2" cellpadding="7">
-                        <h:outputText value="Autor:" styleClass="text-secondary"/>
-                        <h:outputText value="#{i.author}"/>
-
-                        <h:outputText value="Data: " styleClass="text-secondary"/>
-                        <p:column>
-                           
-                            <h:outputText style="vertical-align: middle; margin-left: .5rem"
-                                            value="#{i.date}"/>
-                        </p:column>
-
-                        <h:outputText value="Zdjęcie: " styleClass="text-secondary"/>
-                        <h:outputText value="#{i.photo}"/>
-
-                        <h:outputText value="Opis:" styleClass="text-secondary"/>
-                        <p:column>
-                            <h:outputText style="vertical-align: middle; margin-left: .5rem"
-                                            escape="false" value="#{i.description}"/>
-                        </p:column>
-                    </h:panelGrid>
-                </div>
-            </p:dataViewGridItem>
+                    listIcon="pi pi-bars">
 
         <p:dataViewListItem>
                 <h:panelGrid columns="2" style="width:100%" cellspacing="20">
                     <p:outputPanel>
                     <p:column>
                     	<h3><h:outputText value="#{i.title}"/></h3>
+                    	
                     </p:column>
                             
                         <h:panelGrid columns="2" cellpadding="7">
@@ -75,14 +50,14 @@
                                
                                 <h:outputText style="vertical-align: middle; margin-left: .5rem"
                                               value="#{i.date}"/>
+                                              
                             </p:column>
 
-                            <h:outputText value="Zdjęcie: " styleClass="text-secondary"/>
-                            <h:outputText value="#{i.photo}"/>
+                            
 
                             <h:outputText value="" styleClass="text-secondary"/>
                             <p:column>
-                              
+                              <img src="resources/images/#{i.photo}" width="500em" alt="#{i.photo}"/>
                                 <h:outputText style="vertical-align: middle; margin-left: .5rem"
                                              escape="false"  value="#{i.description}"/>
                             </p:column>
@@ -101,14 +76,14 @@
             <div class="col-lg-6  justify-content-center" >
                 <div class="content">
                 <h3>Masz ciekawe wiadomości?</h3>
-                <h2>Skontaktuj się z nami!</h2>
+                <h2>Dołącz do nas!</h2>
                 <p>
                     Jednym z głównych celów stowarzyszenia jest powstrzymanie emisyjności pyłów – opiłków żelaza, które zanieczyszczają nasze miasto w znaczącym stopniu.
                     Wielu z mieszkańców Zawiercia ma problem z opiłkami, które osiadają na wszystkich powierzchniach i tworzą szorstką powłokę, której nie można zmyć w domowych warunkach. Zniszczone dachy, panele fotowoltaiczne, okna, ogrodzenia, samochody, ulice, chodniki, kosze na śmieci… tych rzeczy jest znacznie więcej!
                 </p>
                 <div class="text-center text-lg-start">
-                    <a href="resourcesnews" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                    <span>Skontaktuj się!</span>
+                    <a href="register.jsf" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
+                    <span>Zarejestruj się!</span>
                     <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>

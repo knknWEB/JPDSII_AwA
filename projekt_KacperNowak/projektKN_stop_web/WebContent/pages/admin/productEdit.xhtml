@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:viewAction action="#{productEditBB.onLoad()}" />
+</f:metadata>
+
+<ui:composition template="templates/main.xhtml">
+
+
+
+	<ui:define name="title">
+		Edycja produktu - Serwis STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+
+		<ui:insert name="pageContent">
+	
+<div class="card">
+    <h:form>
+        <p:breadCrumb>
+            <p:menuitem outcome="panel"/>
+            <p:menuitem outcome="productList" value="Lista użytkowników"/>
+            <p:menuitem value="Edycja produktu"/>
+        </p:breadCrumb>
+    </h:form>
+</div>
+	<p:panel toggleable="true" header="Edycja rekordu">
+
+		<h:form rendered="#{productEditBB.product != null}">
+			<h:panelGrid columns="3" cellpadding="5">
+			
+			<h:outputLabel for="u-name" value="Nazwa produktu:" />
+				<p:inputText id="u-name" value="#{productEditBB.product.productName}"
+					required="true" requiredMessage="Podaj nazwę produktu"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-name" display="icon"/>
+				
+				<h:outputLabel for="u-quanity" value="Ilość w opakowaniu" />
+				<p:inputNumber id="u-quanity" value="#{productEditBB.product.quantityInPackage}"
+					required="true" requiredMessage="Podaj ilość w opakowaniu"
+					validatorMessage="co najwyżej 5 znaków">
+					<f:validateLength maximum="5" />
+				</p:inputNumber>
+				<p:message for="u-quanity" display="icon"/>
+  
+				<h:outputLabel for="u-type" value="Typ:" />
+				<p:inputText id="u-type" value="#{productEditBB.product.type}"
+					required="true" requiredMessage="Podaj typ/wymiary:"
+					validatorMessage="co najwyżej 40 znaków">
+					<f:validateLength maximum="40" />
+				</p:inputText>
+				<p:message for="u-type" display="icon"/>
+
+				<h:outputLabel for="u-price" value="Cena" />
+				<p:inputNumber id="u-price" value="#{productEditBB.product.price}"
+					required="true" requiredMessage="Wymagana cena"
+					validatorMessage="co najwyżej 5 znaków">
+					<f:validateLength maximum="5" />
+				</p:inputNumber>
+				<p:message for="u-price" display="icon"/>
+		
+	
+
+				
+
+			<p:commandButton value="Zapisz" action="#{productEditBB.saveData()}"
+				style="margin-right: 1em;" update="@form" />
+			<p:button value="Anuluj" outcome="userList" />
+		</h:panelGrid>
+		</h:form>
+		
+
+	</p:panel>
+		
+		</ui:insert>
+	</ui:define>
+	
+</ui:composition>
+</html>
+

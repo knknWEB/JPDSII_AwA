@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+
+	<ui:define name="title">
+		Rejestracja STOP dla odlewni
+	</ui:define>
+
+	<ui:define name="content">
+	
+	<div class="card">
+    	<h2 class="mt-0">Rejestracja użytkownika do platformy STOP dla Odlewni</h2>
+
+    <p:divider />
+
+    <p:card style="width:45rem; margin-bottom: 2em; float: left;">
+	    <f:facet name="title">
+	        Zarejestruj się!
+	    </f:facet>
+
+   	
+            <h:form>
+            
+           
+            
+            
+            <h:panelGrid id="grid" columns="3" cellpadding="7">
+            <h:outputText for="name" value="Imię: *"/>
+            	<p:inputText id="name" value="#{registerBB.name}" label="Firstname"
+					required="true" requiredMessage="Podaj imię!"
+					validatorMessage="Imię powinno mieć 3-30  znaków!">
+					<f:validateLength maximum="30" minimum="3" />
+				</p:inputText>
+			    <p:message for="name"/>
+             <h:outputText for="surname" value="Nazwisko: *"/>
+                <p:inputText id="surname" value="#{registerBB.surname}" 
+					required="true" requiredMessage="Podaj nazwisko!"
+					validatorMessage="Nazwisko powinno mieć 3-30  znaków!">
+					<f:validateLength maximum="30" minimum="3" />
+                </p:inputText>
+            	<p:message for="surname"/>
+			<h:outputText for="mail" value="Adres e-mail: *"/>
+                <p:inputText id="mail" value="#{registerBB.mail}"
+					required="true" requiredMessage="Podaj adres e-mail!"
+					validatorMessage="Nieprawidłowy format adresu. Przykład: stop@mail.com">
+					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</p:inputText>
+                <p:message for="mail"/>
+           <h:outputText for="login" value="Login: *"/>
+                <p:inputText id="login" value="#{registerBB.login}"
+					required="true" requiredMessage="Podaj login!"
+					validatorMessage="Login powinien mieć 6-30  znaków!">
+					<f:validateLength maximum="30" minimum="6" />
+                </p:inputText>	
+                <p:message for="login"/>
+           <h:outputText for="password" value="Hasło: *"/>
+                <p:password id="password" match="password2"     feedback="true" value="#{registerBB.password}" 
+					required="true" requiredMessage="Podaj hasło!"
+					validatorMessage="Hasła muszą się zgadzać, powinny mieć 8-30  znaków, w tym co najmniej jedną cyfrę!">
+					<f:validateLength maximum="30" minimum="6" />
+                </p:password>	
+                <p:message for="password" showDetail="true"/>
+           <h:outputText for="password2" value="Powtórz hasło: *"/>
+                <p:password id="password2"  feedback="true" value="#{registerBB.password2}" 
+					required="true" requiredMessage="Powtórz hasło!"
+					validatorMessage="password 1 should match password 2">
+					
+                </p:password>	
+                <p:message for="password2" showDetail="true"/>
+         
+       
+         
+            </h:panelGrid>
+		
+			<p:messages id="msg" />
+           
+        	
+			
+			<p:commandButton value="Zarejestruj" action="#{registerBB.register()}" update="@form" />
+
+		</h:form>
+   
+	</p:card>
+
+    <p:divider />
+
+    <p:card style="width: 25rem; margin-bottom: 2em; float: left;">
+	    <f:facet name="title">
+	        Masz już konto?
+	    </f:facet>
+				<p:button value="Zaloguj się!" outcome="/public/login"/>
+
+   
+	</p:card>    
+    <p:divider />
+
+
+</div>	
+
+	
+	</ui:define>
+
+
+</ui:composition>
+
+</html>

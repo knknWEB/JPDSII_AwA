@@ -16,7 +16,9 @@ import stopdlaodlewni.entities.Info;
 
 @Stateless
 public class InfoDAO{
+	private Query query;
 
+	Info queryFilter = new Info();
 	// Dependency injection (no setter method is needed)
 	@PersistenceContext//(unitName = UNIT_NAME)
 	protected EntityManager em;
@@ -36,11 +38,15 @@ public class InfoDAO{
 	public Info find(Object id) {
 		return em.find(Info.class, id);
 	}
+	public Info getQueryFilter() {
+		return queryFilter;
+	}
+
 
 	public List<Info> getFullList() {
 		List<Info> list = null;
 
-		Query query = em.createQuery("select p from Info p");
+		Query query = em.createQuery("select i from Info i ORDER BY i.date DESC");
 
 		try {
 			list = query.getResultList();
@@ -50,47 +56,7 @@ public class InfoDAO{
 
 		return list;
 	}
-
-	public List<Info> getList(Map<String, Object> searchParams) {
-		List<Info> list = null;
-
-		// 1. Build query string with parameters
-		String select = "select i ";
-		String from = "from Info i ";
-		String where = "";
-		String orderby = "order by i.title asc";
-
-		// search for surname
-		String title = (String) searchParams.get("title");
-		if (title != null) {
-			if (where.isEmpty()) {
-				where = "where ";
-			} else {
-				where += "and ";
-			}
-			where += "i.title like :title ";
-		}
+	
 		
-		// ... other parameters ... 
-
-		// 2. Create query object
-		Query query = em.createQuery(select + from + where + orderby);
-
-		// 3. Set configured parameters
-		if (title != null) {
-			query.setParameter("title", title+"%");
-		}
-
-		// ... other parameters ... 
-
-		// 4. Execute query and retrieve list of Info objects
-		try {
-			list = query.getResultList();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return list;
-	}
 
 }
